@@ -102,9 +102,9 @@ public class LoginGUI extends javax.swing.JFrame {
     private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
         // TODO add your handling code here:
         Credentials credentials = new Credentials(txt_Email.getText(), String.valueOf(jPassword.getPassword()));
-        String role = credentials.checkCredentials();
+        credentials.checkCredentials();
         
-        switch(role){
+        switch(credentials.getRole()){
             case "HUMAN RESOURCE":
                 dispose();
                 HumanResourceGUI hr = new HumanResourceGUI();

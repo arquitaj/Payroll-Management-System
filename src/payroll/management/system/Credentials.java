@@ -16,12 +16,16 @@ import java.util.logging.Logger;
  * @author Paul
  */
 abstract class transactions{
-    abstract String checkCredentials();
+    abstract void checkCredentials();
 }
 public class Credentials extends transactions {
+    private String employeeID;
     private String email, password;
-    String role="";
+    private String role="";
     
+    Credentials(){
+        
+    }
     Credentials(String email, String password){
         this.email = email;
         this.password = password;
@@ -29,7 +33,7 @@ public class Credentials extends transactions {
     
  
     @Override
-    String checkCredentials(){
+    void checkCredentials(){
         String path = "MotorPHDatabase//CredentialsDatabase.csv";
         String line;
         
@@ -42,6 +46,8 @@ public class Credentials extends transactions {
                 String csvPassword = values[2].trim();
 
                 if (csvEmail.equals(this.email) && csvPassword.equals(this.password)) {
+                    System.out.print(values[0].trim());
+                    this.employeeID = values[0].trim();  //To set Employee ID
                     this.role = values[3].trim();
                 }
             }
@@ -49,7 +55,13 @@ public class Credentials extends transactions {
       } catch (IOException ex) {
             Logger.getLogger(Credentials.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
     
+    public String getEmployeeID(){
+        return this.employeeID; 
+    }
+    public String getRole(){
         return this.role;
     }
+    
 }
