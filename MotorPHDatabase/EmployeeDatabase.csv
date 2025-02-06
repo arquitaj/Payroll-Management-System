@@ -1,0 +1,5 @@
+Employee ID,First Name,Last Name,Birthday,Address,Phone Number,Immediate Supervisor,SSS No.,PhilHealth No.,TIN No.,Pagibig No.,Status Name,Position Name,Basic Salary,Rice Subsidy,Phone Allowance,Clothing Allowance,Gross Semi-monthly Rate,Hourly Rate
+123,John Paul,Arquita,02/11/1998,Davao City,9123456789,Paul John Siligan,123-456-789,321-654-987,753-864-129,145-789-123,Regular,HR,1000,200,100,300,500,50
+456,Paul John,Siligan,02/12/1999,Davao De Oro,9123456789,Adrian Abao,123-456-789,321-654-987,753-864-129,145-789-123,Part-Time,Payroll Staff,1000,200,100,300,500,50
+789,Adrian,Abao,03/12/1999,Davao Del Sur,9123456789,Dan Michael Vallar,123-456-789,321-654-987,753-864-129,145-789-123,Regular,IT,1000,200,100,300,500,50
+321,Dan Michael,Vallar,04/12/1999,Davao Occidental,9123456789,John Paul Arquita,123-456-789,321-654-987,753-864-129,145-789-123,Contractual,Manager,1000,200,100,300,500,50

@@ -101,15 +101,16 @@ public class LoginGUI extends javax.swing.JFrame {
 
     private void btn_LoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoginActionPerformed
         // TODO add your handling code here:
-        Credentials credentials = new Credentials(txt_Email.getText(), String.valueOf(jPassword.getPassword()));
+        String email = txt_Email.getText();
+        String password = String.valueOf(jPassword.getPassword());
+        Credentials credentials = new Credentials(email, password, "MotorPHDatabase//CredentialsDatabase.csv");
         credentials.checkCredentials();
         
         switch(credentials.getRole()){
             case "HUMAN RESOURCE":
                 dispose();
-                HumanResourceGUI hr = new HumanResourceGUI();
+                HumanResourceGUI hr = new HumanResourceGUI(email, password);
                 hr.setVisible(true);
-                JOptionPane.showMessageDialog(null, "Found HUMAN RESOURCE!!");
                 break;
             case "EMPLOYEE":
                 JOptionPane.showMessageDialog(null, "Found EMPLOYEE!!");
