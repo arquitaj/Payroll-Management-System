@@ -4,9 +4,12 @@
  */
 package payroll.management.system;
 
+import java.awt.List;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,56 +19,45 @@ import java.util.logging.Logger;
  */
 public class EmployeeDetails {
     private String[] values;
-    private String employeeID;
-    private String path;
+    private String employeeID="";
+    private String path="";
     private String firstName, lastName;
+    private ArrayList<ArrayList<String>> dataList = new ArrayList<>();
     
-    
+    EmployeeDetails(){
+        
+    }
     EmployeeDetails(String employeeID, String path){
         this.employeeID = employeeID;
-        this.path = path;
-        
+        this.path = path;  
     }
     
     public void allEmployeeDetails(){
         String line; 
-        try (BufferedReader reader = new BufferedReader(new FileReader(this.path))) 
-        {
-            while ((line = reader.readLine()) != null)
-            {
-                this.values = line.split(",");
+        try (BufferedReader reader = new BufferedReader(new FileReader(this.path))) {
+            while ((line = reader.readLine()) != null){
+                String[] datas = line.split(",");
+                ArrayList<String> row = new ArrayList<>();
+                row.addAll(Arrays.asList(datas));
+                dataList.add(row);
             } 
-          } catch (IOException ex) 
-            {
-                Logger.getLogger(Credentials.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        } catch (IOException ex){
+            Logger.getLogger(Credentials.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     String getEmployeeName(){
-        
-         String line; 
-        try (BufferedReader reader = new BufferedReader(new FileReader(this.path))) 
-        {
-            while ((line = reader.readLine()) != null)
-            {
-                this.values = line.split(",");
-                
-                if (this.values.length == 19) 
-            {
-              String employeeID = values[0].trim();
-            
-                if (employeeID.equals(this.employeeID)) 
-                    {                  
-                        this.firstName = values[1].trim();
-                        this.lastName = values[2].trim();
-                  
-                    }
+        for(int i=1; i<this.dataList.size(); i++){
+            if(this.dataList.get(i).get(0).equals(this.employeeID)){
+                this.firstName = this.dataList.get(i).get(1);
+                this.lastName = this.dataList.get(i).get(2);
             }
-            } 
-          } catch (IOException ex) 
-            {
-                Logger.getLogger(Credentials.class.getName()).log(Level.SEVERE, null, ex);
-            }
-          return firstName+" "+lastName;
+//            System.out.println(dataList.get(i));
+        }
+         return firstName+" "+lastName;     
+    }
+    
+    ArrayList<ArrayList<String>> getDataList(){
+        return this.dataList;
     }
 }

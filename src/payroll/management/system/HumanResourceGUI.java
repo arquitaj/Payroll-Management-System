@@ -4,6 +4,9 @@
  */
 package payroll.management.system;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Paul
@@ -29,9 +32,14 @@ public class HumanResourceGUI extends javax.swing.JFrame {
         humanResource.allEmployeeDetails();
         
         String employeeName = humanResource.getEmployeeName();
+        ArrayList<ArrayList<String>> dataList = humanResource.getDataList();
+        humanResource.TableData(dataList,jTableEmployeeList);
+        
+ 
         
         lblID.setText(employeeID);
         lblName.setText(employeeName);
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -195,15 +203,13 @@ public class HumanResourceGUI extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 0)));
 
+        jTableEmployeeList.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTableEmployeeList.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "EMPLOYEE ID", "EMPLOYEE LAST NAME", "EMPLOYEE FIRST NAME", "EMPLOYEE STATUS", "BASIC SALARY"
+                "EMPLOYEE ID", "EMPLOYEE FIRST NAME", "EMPLOYEE LAST NAME", "STATUS", "BASIC SALARY"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -224,14 +230,14 @@ public class HumanResourceGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEmployeeLayout.createSequentialGroup()
                 .addGroup(jPanelEmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelEmployeeLayout.createSequentialGroup()
-                        .addGap(102, 102, 102)
+                        .addGap(112, 112, 112)
                         .addComponent(lblSelectName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jComboSelectName, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnAddEmployee))
                     .addGroup(jPanelEmployeeLayout.createSequentialGroup()
-                        .addContainerGap(78, Short.MAX_VALUE)
+                        .addContainerGap(69, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 949, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(54, 54, 54))
         );
@@ -243,8 +249,8 @@ public class HumanResourceGUI extends javax.swing.JFrame {
                     .addComponent(jComboSelectName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblSelectName)
                     .addComponent(btnAddEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
                 .addGap(29, 29, 29))
         );
 
@@ -253,7 +259,7 @@ public class HumanResourceGUI extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(33, 33, 33)
                 .addComponent(jPanelEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
@@ -279,11 +285,11 @@ public class HumanResourceGUI extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(77, 77, 77)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
