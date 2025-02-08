@@ -4,6 +4,8 @@
  */
 package payroll.management.system;
 
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,22 +15,36 @@ import javax.swing.table.DefaultTableModel;
  */
 public class HumanResourceGUI extends javax.swing.JFrame {
 
-    /**
-     * Creates new form HumanResourceGUI
-     */
+//    GridBagLayout layout = new GridBagLayout();
+//    EmployeePanel employeePanel;
+    private String email, password;
+    private String employeeID;
+    protected String CredentialDatabasePath = "MotorPHDatabase//CredentialsDatabase.csv";
+    protected String EmployeeDatabasePath = "MotorPHDatabase//EmployeeDatabase.csv";
+    protected String AttendanceDatabasePath = "MotorPHDatabase//AttendanceDatabase.csv";
     public HumanResourceGUI() {
         initComponents();
- 
+        
+//        this.employeePanel = new EmployeePanel();
+//        jPanel1.setLayout(this.layout);
+//        GridBagConstraints constraints = new GridBagConstraints();
+//        constraints.gridx=0;
+//        constraints.gridy=0;
+//        jPanel1.add(this.employeePanel, constraints);
+//        this.employeePanel.setVisible(false);
+//        jPanelEmployee.setVisible(false);
     }
 
     public HumanResourceGUI(String email, String password) {
         initComponents();
+        this.email = email;
+        this.password = password;
         
-        Credentials credentials = new Credentials(email, password, "MotorPHDatabase//CredentialsDatabase.csv");
+        Credentials credentials = new Credentials(email, password, CredentialDatabasePath);
         credentials.checkCredentials();
-        String employeeID = credentials.getEmployeeID();
+        this.employeeID = credentials.getEmployeeID();
         
-        HumanResource humanResource = new HumanResource(employeeID,"MotorPHDatabase//EmployeeDatabase.csv");
+        HumanResource humanResource = new HumanResource(employeeID, EmployeeDatabasePath);
         humanResource.allEmployeeDetails();
         
         String employeeName = humanResource.getEmployeeName();
@@ -90,6 +106,11 @@ public class HumanResourceGUI extends javax.swing.JFrame {
 
         btnLogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLogin.setText("TIME IN");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         btnDashboard1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnDashboard1.setText("DASHBOARD");
@@ -111,6 +132,11 @@ public class HumanResourceGUI extends javax.swing.JFrame {
 
         btnLogout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnLogout.setText("TIME OUT");
+        btnLogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogoutActionPerformed(evt);
+            }
+        });
 
         lblID.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -305,6 +331,24 @@ public class HumanResourceGUI extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        
+        HumanResource humanResource = new HumanResource(employeeID, AttendanceDatabasePath);
+        humanResource.checkLogin();
+        humanResource.allEmployeeDetails();
+        humanResource.checkLogin();
+        humanResource.EmployeeLogin();
+        
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+       HumanResource humanResource = new HumanResource(employeeID, AttendanceDatabasePath);
+        humanResource.allEmployeeDetails();
+        humanResource.checkLogin();
+        humanResource.checkLogout();
+        humanResource.EmployeeLogout();
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments

@@ -197,6 +197,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="TIME IN"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLoginActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnDashboard1">
               <Properties>
@@ -255,6 +258,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="TIME OUT"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLogoutActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblID">
               <Properties>
